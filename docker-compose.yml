@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+  app:
+    build: ./app
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+  frontend:
+    build: ./frontend
+    ports:
+      - "62.113.107.146:3000:3000"
+    depends_on:
+      - app
